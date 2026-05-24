@@ -12,7 +12,7 @@ function typescript(statements: Statement[]) {
                 return [statement]
             case Node.Var:
             case Node.Let:
-                return [{ ...statement, typename: undefined }]
+                return [{ ...statement, kind: Node.Var, typename: undefined }]
             case Node.TypeAlias:
                 return []
         }

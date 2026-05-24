@@ -1,1 +1,1 @@
-"var x = 1;\nlet x = 2"
+"var x = 1;\nvar x = 2"
