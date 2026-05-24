@@ -1,0 +1,40 @@
+{
+  "locals": {
+    "a": [
+      {
+        "kind": "Let",
+        "pos": 3
+      }
+    ],
+    "b": [
+      {
+        "kind": "Let",
+        "pos": 14
+      }
+    ]
+  },
+  "statements": [
+    {
+      "kind": "Let",
+      "name": {
+        "kind": "Identifier",
+        "text": "a"
+      },
+      "init": {
+        "kind": "Literal",
+        "value": 1
+      }
+    },
+    {
+      "kind": "Let",
+      "name": {
+        "kind": "Identifier",
+        "text": "b"
+      },
+      "init": {
+        "kind": "Identifier",
+        "text": "a"
+      }
+    }
+  ]
+}
