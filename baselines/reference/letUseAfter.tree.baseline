@@ -1,0 +1,30 @@
+{
+  "locals": {
+    "y": [
+      {
+        "kind": "Let",
+        "pos": 3
+      }
+    ]
+  },
+  "statements": [
+    {
+      "kind": "Let",
+      "name": {
+        "kind": "Identifier",
+        "text": "y"
+      },
+      "init": {
+        "kind": "Literal",
+        "value": 1
+      }
+    },
+    {
+      "kind": "ExpressionStatement",
+      "expr": {
+        "kind": "Identifier",
+        "text": "y"
+      }
+    }
+  ]
+}

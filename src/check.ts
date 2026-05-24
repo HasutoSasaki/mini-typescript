@@ -31,13 +31,18 @@ export function check(module: Module) {
     }
     function checkExpression(expression: Expression): Type {
         switch (expression.kind) {
-            case Node.Identifier:
+            case Node.Identifier: {
                 const symbol = resolve(module.locals, expression.text, 'value')
                 if (symbol) {
+                    if (symbol.valueDeclaration!.kind === Node.Let
+                        && expression.pos < symbol.valueDeclaration!.pos) {
+                        error(expression.pos, `Block-scoped variable '${expression.text}' used before its declaration.`)
+                    }
                     return checkStatement(symbol.valueDeclaration!)
                 }
                 error(expression.pos, "Could not resolve " + expression.text)
                 return errorType
+            }
             case Node.Literal:
                 return numberType
             case Node.Assignment:
