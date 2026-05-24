@@ -48,6 +48,7 @@ const lexTests = {
     "firstLex": " 1200Hello    World1! 14d",
     "underscoreLex": "x_y is _aSingle Identifier_",
     "varLex": "var x = 1",
+    "letLex": "let x = 1",
     "semicolonLex": "x; y",
     "newlineLex": "x\n y  \n" ,
 }

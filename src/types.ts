@@ -1,6 +1,7 @@
 export enum Token {
     Function,
     Var,
+    Let,
     Type,
     Return,
     Equals,
@@ -66,9 +67,9 @@ export type TypeAlias = Location & {
     typename: Identifier
 }
 export type Declaration = Var | TypeAlias // plus others, like function
-export type Symbol = { 
+export type Symbol = {
     valueDeclaration: Declaration | undefined
-    declarations: Declaration[] 
+    declarations: Declaration[]
 }
 export type Table = Map<string, Symbol>
 export type Module = {
