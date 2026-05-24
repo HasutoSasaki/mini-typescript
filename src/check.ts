@@ -15,6 +15,7 @@ export function check(module: Module) {
             case Node.ExpressionStatement:
                 return checkExpression(statement.expr)
             case Node.Var:
+            case Node.Let: {
                 const i = checkExpression(statement.init)
                 if (!statement.typename) {
                     return i
@@ -23,6 +24,7 @@ export function check(module: Module) {
                 if (t !== i && t !== errorType)
                     error(statement.init.pos, `Cannot assign initialiser of type '${typeToString(i)}' to variable with declared type '${typeToString(t)}'.`)
                 return t
+            }
             case Node.TypeAlias:
                 return checkType(statement.typename)
         }

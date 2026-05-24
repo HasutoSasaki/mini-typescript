@@ -1,0 +1,16 @@
+{
+  "locals": {},
+  "statements": [
+    {
+      "kind": "Let",
+      "name": {
+        "kind": "Identifier",
+        "text": "x"
+      },
+      "init": {
+        "kind": "Literal",
+        "value": 1
+      }
+    }
+  ]
+}
