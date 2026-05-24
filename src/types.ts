@@ -74,6 +74,7 @@ export type TypeAlias = Location & {
     typename: Identifier
 }
 export type Declaration = Var | Let | TypeAlias // plus others, like function
+export type Meaning = 'value' | 'type'
 export type Symbol = {
     valueDeclaration: Declaration | undefined
     declarations: Declaration[]

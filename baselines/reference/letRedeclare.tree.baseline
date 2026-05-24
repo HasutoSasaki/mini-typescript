@@ -18,6 +18,17 @@
         "kind": "Literal",
         "value": 1
       }
+    },
+    {
+      "kind": "Let",
+      "name": {
+        "kind": "Identifier",
+        "text": "x"
+      },
+      "init": {
+        "kind": "Literal",
+        "value": 2
+      }
     }
   ]
 }

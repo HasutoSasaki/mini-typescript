@@ -32,7 +32,7 @@ export function check(module: Module) {
     function checkExpression(expression: Expression): Type {
         switch (expression.kind) {
             case Node.Identifier:
-                const symbol = resolve(module.locals, expression.text, Node.Var)
+                const symbol = resolve(module.locals, expression.text, 'value')
                 if (symbol) {
                     return checkStatement(symbol.valueDeclaration!)
                 }
@@ -55,7 +55,7 @@ export function check(module: Module) {
             case "number":
                 return numberType
             default:
-                const symbol = resolve(module.locals, name.text, Node.TypeAlias)
+                const symbol = resolve(module.locals, name.text, 'type')
                 if (symbol) {
                     return checkType((symbol.declarations.find(d => d.kind === Node.TypeAlias) as TypeAlias).typename)
                 }

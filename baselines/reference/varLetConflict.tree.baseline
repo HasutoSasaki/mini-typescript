@@ -2,12 +2,23 @@
   "locals": {
     "x": [
       {
-        "kind": "Let",
+        "kind": "Var",
         "pos": 3
       }
     ]
   },
   "statements": [
+    {
+      "kind": "Var",
+      "name": {
+        "kind": "Identifier",
+        "text": "x"
+      },
+      "init": {
+        "kind": "Literal",
+        "value": 1
+      }
+    },
     {
       "kind": "Let",
       "name": {
@@ -16,7 +27,7 @@
       },
       "init": {
         "kind": "Literal",
-        "value": 1
+        "value": 2
       }
     }
   ]

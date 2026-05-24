@@ -4,6 +4,10 @@
       {
         "kind": "Let",
         "pos": 3
+      },
+      {
+        "kind": "TypeAlias",
+        "pos": 15
       }
     ]
   },
@@ -17,6 +21,17 @@
       "init": {
         "kind": "Literal",
         "value": 1
+      }
+    },
+    {
+      "kind": "TypeAlias",
+      "name": {
+        "kind": "Identifier",
+        "text": "x"
+      },
+      "typename": {
+        "kind": "Identifier",
+        "text": "number"
       }
     }
   ]
