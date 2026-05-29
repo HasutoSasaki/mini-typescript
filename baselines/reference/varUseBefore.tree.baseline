@@ -1,0 +1,30 @@
+{
+  "locals": {
+    "x": [
+      {
+        "kind": "Var",
+        "pos": 6
+      }
+    ]
+  },
+  "statements": [
+    {
+      "kind": "ExpressionStatement",
+      "expr": {
+        "kind": "Identifier",
+        "text": "x"
+      }
+    },
+    {
+      "kind": "Var",
+      "name": {
+        "kind": "Identifier",
+        "text": "x"
+      },
+      "init": {
+        "kind": "Literal",
+        "value": 1
+      }
+    }
+  ]
+}

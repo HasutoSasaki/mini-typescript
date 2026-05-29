@@ -4,7 +4,9 @@
         "strict": true,
         "target": "esnext",
         "lib": ["es2020", "dom"],
-        "outDir": "built"
+        "outDir": "built",
+        "rootDir": "src",
+        "types": ["node"]
     },
     "include": [
         "src"

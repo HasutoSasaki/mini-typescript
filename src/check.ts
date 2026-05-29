@@ -15,6 +15,7 @@ export function check(module: Module) {
             case Node.ExpressionStatement:
                 return checkExpression(statement.expr)
             case Node.Var:
+            case Node.Let: {
                 const i = checkExpression(statement.init)
                 if (!statement.typename) {
                     return i
@@ -23,19 +24,25 @@ export function check(module: Module) {
                 if (t !== i && t !== errorType)
                     error(statement.init.pos, `Cannot assign initialiser of type '${typeToString(i)}' to variable with declared type '${typeToString(t)}'.`)
                 return t
+            }
             case Node.TypeAlias:
                 return checkType(statement.typename)
         }
     }
     function checkExpression(expression: Expression): Type {
         switch (expression.kind) {
-            case Node.Identifier:
-                const symbol = resolve(module.locals, expression.text, Node.Var)
+            case Node.Identifier: {
+                const symbol = resolve(module.locals, expression.text, 'value')
                 if (symbol) {
+                    if (symbol.valueDeclaration!.kind === Node.Let
+                        && expression.pos < symbol.valueDeclaration!.pos) {
+                        error(expression.pos, `Block-scoped variable '${expression.text}' used before its declaration.`)
+                    }
                     return checkStatement(symbol.valueDeclaration!)
                 }
                 error(expression.pos, "Could not resolve " + expression.text)
                 return errorType
+            }
             case Node.Literal:
                 return numberType
             case Node.Assignment:
@@ -53,7 +60,7 @@ export function check(module: Module) {
             case "number":
                 return numberType
             default:
-                const symbol = resolve(module.locals, name.text, Node.TypeAlias)
+                const symbol = resolve(module.locals, name.text, 'type')
                 if (symbol) {
                     return checkType((symbol.declarations.find(d => d.kind === Node.TypeAlias) as TypeAlias).typename)
                 }
