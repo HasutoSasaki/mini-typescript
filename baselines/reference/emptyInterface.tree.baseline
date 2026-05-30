@@ -1,5 +1,12 @@
 {
-  "locals": {},
+  "locals": {
+    "I": [
+      {
+        "kind": "Interface",
+        "pos": 9
+      }
+    ]
+  },
   "statements": [
     {
       "kind": "Interface",

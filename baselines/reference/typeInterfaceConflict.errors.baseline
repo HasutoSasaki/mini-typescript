@@ -1,0 +1,6 @@
+[
+  {
+    "pos": 26,
+    "message": "Cannot redeclare I; first declared at 4"
+  }
+]

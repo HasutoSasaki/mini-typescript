@@ -2,12 +2,23 @@
   "locals": {
     "I": [
       {
-        "kind": "Interface",
-        "pos": 9
+        "kind": "TypeAlias",
+        "pos": 4
       }
     ]
   },
   "statements": [
+    {
+      "kind": "TypeAlias",
+      "name": {
+        "kind": "Identifier",
+        "text": "I"
+      },
+      "typename": {
+        "kind": "Identifier",
+        "text": "number"
+      }
+    },
     {
       "kind": "Interface",
       "name": {

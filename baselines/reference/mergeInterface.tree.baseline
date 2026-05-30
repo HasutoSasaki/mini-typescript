@@ -4,6 +4,10 @@
       {
         "kind": "Interface",
         "pos": 9
+      },
+      {
+        "kind": "Interface",
+        "pos": 36
       }
     ]
   },
@@ -20,6 +24,26 @@
           "name": {
             "kind": "Identifier",
             "text": "x"
+          },
+          "typename": {
+            "kind": "Identifier",
+            "text": "number"
+          }
+        }
+      }
+    },
+    {
+      "kind": "Interface",
+      "name": {
+        "kind": "Identifier",
+        "text": "I"
+      },
+      "members": {
+        "0": {
+          "kind": "PropertySignature",
+          "name": {
+            "kind": "Identifier",
+            "text": "y"
           },
           "typename": {
             "kind": "Identifier",
