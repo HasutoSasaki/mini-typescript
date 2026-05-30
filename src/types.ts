@@ -99,4 +99,4 @@ export type Module = {
     locals: Table
     statements: Statement[]
 }
-export type Type = { id: string }
+export type Type = { id: string, members?: Table }
