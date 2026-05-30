@@ -1,0 +1,25 @@
+{
+  "locals": {},
+  "statements": [
+    {
+      "kind": "Interface",
+      "name": {
+        "kind": "Identifier",
+        "text": "I"
+      },
+      "members": {
+        "0": {
+          "kind": "PropertySignature",
+          "name": {
+            "kind": "Identifier",
+            "text": "x"
+          },
+          "typename": {
+            "kind": "Identifier",
+            "text": "number"
+          }
+        }
+      }
+    }
+  ]
+}

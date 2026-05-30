@@ -13,6 +13,8 @@ function emitStatement(statement: Statement): string {
         }
         case Node.TypeAlias:
             return `type ${statement.name.text} = ${statement.typename.text}`
+        case Node.Interface:
+            return `interface ${statement.name.text} {}`
     }
 }
 function emitExpression(expression: Expression): string {
@@ -25,4 +27,3 @@ function emitExpression(expression: Expression): string {
             return `${expression.name.text} = ${emitExpression(expression.value)}`
     }
 }
-

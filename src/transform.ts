@@ -14,6 +14,7 @@ function typescript(statements: Statement[]) {
             case Node.Let:
                 return [{ ...statement, kind: Node.Var, typename: undefined }]
             case Node.TypeAlias:
+            case Node.Interface:
                 return []
         }
     }

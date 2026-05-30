@@ -1,0 +1,13 @@
+{
+  "locals": {},
+  "statements": [
+    {
+      "kind": "Interface",
+      "name": {
+        "kind": "Identifier",
+        "text": "I"
+      },
+      "members": {}
+    }
+  ]
+}

@@ -27,6 +27,8 @@ export function check(module: Module) {
             }
             case Node.TypeAlias:
                 return checkType(statement.typename)
+            case Node.Interface:
+                return { id: statement.name.text }
         }
     }
     function checkExpression(expression: Expression): Type {
