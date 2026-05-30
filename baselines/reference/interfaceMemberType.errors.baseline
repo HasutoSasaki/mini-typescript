@@ -1,0 +1,6 @@
+[
+  {
+    "pos": 66,
+    "message": "Cannot assign initialiser of type 'number' to variable with declared type '{ x, y }'."
+  }
+]

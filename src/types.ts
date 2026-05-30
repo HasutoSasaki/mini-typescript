@@ -92,7 +92,7 @@ export type Declaration = Var | Let | TypeAlias | Interface // plus others, like
 export type Meaning = 'value' | 'type'
 export type Symbol = {
     valueDeclaration: Declaration | undefined
-    declarations: Declaration[]
+    declarations: (Declaration | PropertySignature)[]
 }
 export type Table = Map<string, Symbol>
 export type Module = {
