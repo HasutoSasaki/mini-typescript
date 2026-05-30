@@ -4,6 +4,7 @@ const keywords = {
     "var": Token.Var,
     "let": Token.Let,
     "type": Token.Type,
+    "interface": Token.Interface,
     "return": Token.Return,
 }
 export function lex(s: string): Lexer {
@@ -38,6 +39,8 @@ export function lex(s: string): Lexer {
                 case '=': token = Token.Equals; break
                 case ';': token = Token.Semicolon; break
                 case ":": token = Token.Colon; break
+                case "{": token = Token.OpenBrace; break
+                case "}": token = Token.CloseBrace; break
                 default: token = Token.Unknown; break
             }
         }

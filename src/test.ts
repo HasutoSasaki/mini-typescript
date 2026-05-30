@@ -44,6 +44,7 @@ function sum(ns: number[]) {
     return total
 }
 const lexTests = {
+    "interfaceLex": "interface I { x: number }",
     "basicLex": "x",
     "firstLex": " 1200Hello    World1! 14d",
     "underscoreLex": "x_y is _aSingle Identifier_",
