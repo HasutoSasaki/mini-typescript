@@ -12,13 +12,11 @@ export function bind(m: Module) {
             || statement.kind === Node.Interface) {
             const symbol = locals.get(statement.name.text)
             if (symbol) {
-                // 同じ名前空間の既存宣言は再宣言エラー。
-                // ただし interface 同士は衝突ではなくマージなので除外する。
-                const other = symbol.declarations.find(d =>
-                    isValue(d.kind) === isValue(statement.kind)
-                    && !(d.kind === Node.Interface && statement.kind === Node.Interface)
-                )
-                if (other) {
+                // 同じ名前空間にある既存宣言（衝突候補）
+                const other = symbol.declarations.find(d => isValue(d.kind) === isValue(statement.kind))
+                // interface 同士は衝突ではなくマージ
+                const isInterfaceMerge = other?.kind === Node.Interface && statement.kind === Node.Interface
+                if (other && !isInterfaceMerge) {
                     error(statement.pos, `Cannot redeclare ${statement.name.text}; first declared at ${other.pos}`)
                 }
                 else {
