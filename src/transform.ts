@@ -1,4 +1,4 @@
-import { Statement, Node } from './types'
+import { Statement, RuntimeStatement, Node } from './types'
 export function transform(statements: Statement[]) {
     return typescript(statements)
 }
@@ -6,7 +6,7 @@ export function transform(statements: Statement[]) {
 function typescript(statements: Statement[]) {
     return statements.flatMap(transformStatement)
 
-    function transformStatement(statement: Statement): Statement[] {
+    function transformStatement(statement: Statement): RuntimeStatement[] {
         switch (statement.kind) {
             case Node.ExpressionStatement:
                 return [statement]

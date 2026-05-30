@@ -57,6 +57,8 @@ export type Assignment = Location & {
     value: Expression
 }
 export type Statement = ExpressionStatement | Var | Let | TypeAlias | Interface
+/** transform 後に実行時へ残る文。let は var に正規化され、type/interface は消える */
+export type RuntimeStatement = ExpressionStatement | Var
 export type ExpressionStatement = Location & {
     kind: Node.ExpressionStatement
     expr: Expression
