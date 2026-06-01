@@ -1,18 +1,15 @@
-import { Statement, Node, Expression } from './types'
-export function emit(statements: Statement[]) {
+import { RuntimeStatement, Node, Expression } from './types'
+export function emit(statements: RuntimeStatement[]) {
     return statements.map(emitStatement).join(";\n")
 }
-function emitStatement(statement: Statement): string {
+function emitStatement(statement: RuntimeStatement): string {
     switch (statement.kind) {
         case Node.ExpressionStatement:
             return emitExpression(statement.expr)
-        case Node.Var:
-        case Node.Let: {
+        case Node.Var: {
             const typestring = statement.typename ? ": " + statement.name : ""
             return `var ${statement.name.text}${typestring} = ${emitExpression(statement.init)}`
         }
-        case Node.TypeAlias:
-            return `type ${statement.name.text} = ${statement.typename.text}`
     }
 }
 function emitExpression(expression: Expression): string {
@@ -25,4 +22,3 @@ function emitExpression(expression: Expression): string {
             return `${expression.name.text} = ${emitExpression(expression.value)}`
     }
 }
-

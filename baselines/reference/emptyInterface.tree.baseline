@@ -1,0 +1,20 @@
+{
+  "locals": {
+    "I": [
+      {
+        "kind": "Interface",
+        "pos": 9
+      }
+    ]
+  },
+  "statements": [
+    {
+      "kind": "Interface",
+      "name": {
+        "kind": "Identifier",
+        "text": "I"
+      },
+      "members": {}
+    }
+  ]
+}

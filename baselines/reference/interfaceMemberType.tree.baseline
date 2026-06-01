@@ -1,0 +1,77 @@
+{
+  "locals": {
+    "I": [
+      {
+        "kind": "Interface",
+        "pos": 9
+      },
+      {
+        "kind": "Interface",
+        "pos": 36
+      }
+    ],
+    "p": [
+      {
+        "kind": "Var",
+        "pos": 57
+      }
+    ]
+  },
+  "statements": [
+    {
+      "kind": "Interface",
+      "name": {
+        "kind": "Identifier",
+        "text": "I"
+      },
+      "members": {
+        "0": {
+          "kind": "PropertySignature",
+          "name": {
+            "kind": "Identifier",
+            "text": "x"
+          },
+          "typename": {
+            "kind": "Identifier",
+            "text": "number"
+          }
+        }
+      }
+    },
+    {
+      "kind": "Interface",
+      "name": {
+        "kind": "Identifier",
+        "text": "I"
+      },
+      "members": {
+        "0": {
+          "kind": "PropertySignature",
+          "name": {
+            "kind": "Identifier",
+            "text": "y"
+          },
+          "typename": {
+            "kind": "Identifier",
+            "text": "number"
+          }
+        }
+      }
+    },
+    {
+      "kind": "Var",
+      "name": {
+        "kind": "Identifier",
+        "text": "p"
+      },
+      "typename": {
+        "kind": "Identifier",
+        "text": "I"
+      },
+      "init": {
+        "kind": "Literal",
+        "value": 1
+      }
+    }
+  ]
+}

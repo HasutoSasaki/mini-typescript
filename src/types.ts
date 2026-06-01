@@ -3,6 +3,7 @@ export enum Token {
     Var,
     Let,
     Type,
+    Interface,
     Return,
     Equals,
     Literal,
@@ -10,6 +11,8 @@ export enum Token {
     Newline,
     Semicolon,
     Colon,
+    OpenBrace,
+    CloseBrace,
     Whitespace,
     Unknown,
     BOF,
@@ -29,6 +32,8 @@ export enum Node {
     Var,
     Let,
     TypeAlias,
+    Interface,
+    PropertySignature,
 }
 export type Error = {
     pos: number
@@ -51,7 +56,9 @@ export type Assignment = Location & {
     name: Identifier
     value: Expression
 }
-export type Statement = ExpressionStatement | Var | Let | TypeAlias
+export type Statement = ExpressionStatement | Var | Let | TypeAlias | Interface
+/** transform 後に実行時へ残る文。let は var に正規化され、type/interface は消える */
+export type RuntimeStatement = ExpressionStatement | Var
 export type ExpressionStatement = Location & {
     kind: Node.ExpressionStatement
     expr: Expression
@@ -73,15 +80,25 @@ export type TypeAlias = Location & {
     name: Identifier
     typename: Identifier
 }
-export type Declaration = Var | Let | TypeAlias // plus others, like function
+export type Interface = Location & {
+    kind: Node.Interface
+    name: Identifier
+    members: PropertySignature[]
+}
+export type PropertySignature = Location & {
+    kind: Node.PropertySignature
+    name: Identifier
+    typename: Identifier
+}
+export type Declaration = Var | Let | TypeAlias | Interface // plus others, like function
 export type Meaning = 'value' | 'type'
 export type Symbol = {
     valueDeclaration: Declaration | undefined
-    declarations: Declaration[]
+    declarations: (Declaration | PropertySignature)[]
 }
 export type Table = Map<string, Symbol>
 export type Module = {
     locals: Table
     statements: Statement[]
 }
-export type Type = { id: string }
+export type Type = { id: string, members?: Table }

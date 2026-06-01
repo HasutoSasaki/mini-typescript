@@ -1,10 +1,13 @@
-import { Module, Statement, Type, Node, Expression, Identifier, TypeAlias } from './types'
+import { Module, Statement, Type, Node, Expression, Identifier, TypeAlias, Table, Interface } from './types'
 import { error } from './error'
 import { resolve } from './bind'
 const stringType: Type = { id: "string" }
 const numberType: Type = { id: "number" }
 const errorType: Type = { id: "error" }
 function typeToString(type: Type) {
+    if (type.members) {
+        return `{ ${[...type.members.keys()].join(", ")} }`
+    }
     return type.id
 }
 export function check(module: Module) {
@@ -27,6 +30,8 @@ export function check(module: Module) {
             }
             case Node.TypeAlias:
                 return checkType(statement.typename)
+            case Node.Interface:
+                return checkType(statement.name)
         }
     }
     function checkExpression(expression: Expression): Type {
@@ -61,11 +66,21 @@ export function check(module: Module) {
                 return numberType
             default:
                 const symbol = resolve(module.locals, name.text, 'type')
-                if (symbol) {
-                    return checkType((symbol.declarations.find(d => d.kind === Node.TypeAlias) as TypeAlias).typename)
+                if (!symbol) {
+                    error(name.pos, "Could not resolve type " + name.text)
+                    return errorType
                 }
-                error(name.pos, "Could not resolve type " + name.text)
-                return errorType
+                const interfaces = symbol.declarations.filter(d => d.kind === Node.Interface) as Interface[]
+                if (interfaces.length) {
+                    const members: Table = new Map()
+                    for (const i of interfaces) {
+                        for (const m of i.members) {
+                            members.set(m.name.text, { declarations: [m], valueDeclaration: undefined })
+                        }
+                    }
+                    return { id: name.text, members }
+                }
+                return checkType((symbol.declarations.find(d => d.kind === Node.TypeAlias) as TypeAlias).typename)
         }
     }
 }

@@ -1,0 +1,26 @@
+[
+  [
+    "Interface"
+  ],
+  [
+    "Identifier",
+    "I"
+  ],
+  [
+    "OpenBrace"
+  ],
+  [
+    "Identifier",
+    "x"
+  ],
+  [
+    "Colon"
+  ],
+  [
+    "Identifier",
+    "number"
+  ],
+  [
+    "CloseBrace"
+  ]
+]
