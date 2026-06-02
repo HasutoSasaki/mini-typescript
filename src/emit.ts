@@ -17,7 +17,9 @@ function emitExpression(expression: Expression): string {
         case Node.Identifier:
             return expression.text
         case Node.Literal:
-            return ""+expression.value
+            return "" + expression.value
+        case Node.StringLiteral:
+            return `"${expression.value}"`
         case Node.Assignment:
             return `${expression.name.text} = ${emitExpression(expression.value)}`
     }

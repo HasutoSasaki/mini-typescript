@@ -25,6 +25,9 @@ export function parse(lexer: Lexer): Module {
         else if (tryParseToken(Token.Literal)) {
             return { kind: Node.Literal, value: +lexer.text(), pos }
         }
+        else if (tryParseToken(Token.StringLiteral)) {
+            return { kind: Node.StringLiteral, value: lexer.text().slice(1, -1), pos }
+        }
         error(pos, "Expected identifier or literal but got " + Token[lexer.token()])
         lexer.scan()
         return { kind: Node.Identifier, text: "(missing)", pos }

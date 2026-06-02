@@ -7,6 +7,7 @@ export enum Token {
     Return,
     Equals,
     Literal,
+    StringLiteral,
     Identifier,
     Newline,
     Semicolon,
@@ -27,6 +28,7 @@ export type Lexer = {
 export enum Node {
     Identifier,
     Literal,
+    StringLiteral,
     Assignment,
     ExpressionStatement,
     Var,
@@ -42,7 +44,7 @@ export type Error = {
 export interface Location {
     pos: number
 }
-export type Expression = Identifier | Literal | Assignment
+export type Expression = Identifier | Literal | StringLiteral | Assignment
 export type Identifier = Location & {
     kind: Node.Identifier
     text: string
@@ -50,6 +52,10 @@ export type Identifier = Location & {
 export type Literal = Location & {
     kind: Node.Literal
     value: number
+}
+export type StringLiteral = Location & {
+    kind: Node.StringLiteral
+    value: string
 }
 export type Assignment = Location & {
     kind: Node.Assignment

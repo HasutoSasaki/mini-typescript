@@ -50,6 +50,8 @@ export function check(module: Module) {
             }
             case Node.Literal:
                 return numberType
+            case Node.StringLiteral:
+                return stringType
             case Node.Assignment:
                 const v = checkExpression(expression.value)
                 const t = checkExpression(expression.name)

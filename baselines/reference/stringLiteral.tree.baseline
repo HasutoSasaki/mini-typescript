@@ -1,0 +1,23 @@
+{
+  "locals": {
+    "greeting": [
+      {
+        "kind": "Var",
+        "pos": 3
+      }
+    ]
+  },
+  "statements": [
+    {
+      "kind": "Var",
+      "name": {
+        "kind": "Identifier",
+        "text": "greeting"
+      },
+      "init": {
+        "kind": "StringLiteral",
+        "value": "hello"
+      }
+    }
+  ]
+}
