@@ -23,9 +23,10 @@ export function lex(s: string): Lexer {
         if (pos === s.length) {
             token = Token.EOF
         }
-        else if (s.charAt(pos) === '"') {
+        else if (s.charAt(pos) === '"' || s.charAt(pos) === "'") {
+          const quote = s.charAt(pos)
           pos++
-          scanForward(c => c !== '"')
+          scanForward(c => c !== quote)
           pos++
           text = s.slice(start, pos)
           token = Token.StringLiteral
