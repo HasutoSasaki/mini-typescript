@@ -1,14 +1,26 @@
-import { Module, Statement, Type, Node, Expression, Identifier, TypeAlias, Table, Interface } from './types'
+import { Module, Statement, Type, Node, Expression, Identifier, TypeAlias, Interface } from './types'
 import { error } from './error'
 import { resolve } from './bind'
 const stringType: Type = { id: "string" }
 const numberType: Type = { id: "number" }
 const errorType: Type = { id: "error" }
-function typeToString(type: Type) {
+function typeToString(type: Type): string {
     if (type.members) {
-        return `{ ${[...type.members.keys()].join(", ")} }`
+        return `{ ${[...type.members].map(([k, t]) => `${k}: ${typeToString(t)}`).join(", ")} }`
     }
     return type.id
+}
+function isTypeEqual(a: Type, b: Type): boolean {
+    if (a === b) return true
+    if (a === errorType || b === errorType) return true
+    if (!a.members || !b.members) return false
+    if (a.members.size !== b.members.size) return false
+    for (const [name, aMember] of a.members) {
+        const bMember = b.members.get(name)
+        if (!bMember) return false
+        if (!isTypeEqual(aMember, bMember)) return false
+    }
+    return true
 }
 export function check(module: Module) {
     return module.statements.map(checkStatement)
@@ -24,7 +36,7 @@ export function check(module: Module) {
                     return i
                 }
                 const t = checkType(statement.typename)
-                if (t !== i && t !== errorType)
+                if (!isTypeEqual(t, i))
                     error(statement.init.pos, `Cannot assign initialiser of type '${typeToString(i)}' to variable with declared type '${typeToString(t)}'.`)
                 return t
             }
@@ -52,10 +64,16 @@ export function check(module: Module) {
                 return numberType
             case Node.StringLiteral:
                 return stringType
+            case Node.ObjectLiteral:
+                const members = new Map<string, Type>()
+                for (const p of expression.properties) {
+                    members.set(p.name.text, checkExpression(p.initializer))
+                }
+                return { id: "object", members }
             case Node.Assignment:
                 const v = checkExpression(expression.value)
                 const t = checkExpression(expression.name)
-                if (t !== v)
+                if (!isTypeEqual(t, v))
                     error(expression.value.pos, `Cannot assign value of type '${typeToString(v)}' to variable of type '${typeToString(t)}'.`)
                 return t
         }
@@ -74,10 +92,10 @@ export function check(module: Module) {
                 }
                 const interfaces = symbol.declarations.filter(d => d.kind === Node.Interface) as Interface[]
                 if (interfaces.length) {
-                    const members: Table = new Map()
+                    const members = new Map<string, Type>()
                     for (const i of interfaces) {
                         for (const m of i.members) {
-                            members.set(m.name.text, { declarations: [m], valueDeclaration: undefined })
+                            members.set(m.name.text, checkType(m.typename))
                         }
                     }
                     return { id: name.text, members }
