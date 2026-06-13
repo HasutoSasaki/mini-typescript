@@ -20,6 +20,9 @@ function emitExpression(expression: Expression): string {
             return "" + expression.value
         case Node.StringLiteral:
             return `"${expression.value}"`
+        case Node.ObjectLiteral:
+            if (expression.properties.length === 0) return "{}"
+            return `{ ${expression.properties.map(p => `${p.name.text}: ${emitExpression(p.initializer)}`).join(", ")} }`
         case Node.Assignment:
             return `${expression.name.text} = ${emitExpression(expression.value)}`
     }
