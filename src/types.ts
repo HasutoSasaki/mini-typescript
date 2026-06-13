@@ -15,6 +15,7 @@ export enum Token {
     OpenBrace,
     CloseBrace,
     Whitespace,
+    Comma,
     Unknown,
     BOF,
     EOF,
@@ -36,6 +37,8 @@ export enum Node {
     TypeAlias,
     Interface,
     PropertySignature,
+    ObjectLiteral,
+    PropertyAssignment,
 }
 export type Error = {
     pos: number
@@ -44,7 +47,7 @@ export type Error = {
 export interface Location {
     pos: number
 }
-export type Expression = Identifier | Literal | StringLiteral | Assignment
+export type Expression = Identifier | Literal | StringLiteral | Assignment | ObjectLiteral
 export type Identifier = Location & {
     kind: Node.Identifier
     text: string
@@ -96,6 +99,15 @@ export type PropertySignature = Location & {
     name: Identifier
     typename: Identifier
 }
+export type ObjectLiteral = Location & {
+    kind: Node.ObjectLiteral
+    properties: PropertyAssignment[]
+}
+export type PropertyAssignment = Location & {
+    kind: Node.PropertyAssignment
+    name: Identifier,
+    initializer: Expression,
+}
 export type Declaration = Var | Let | TypeAlias | Interface // plus others, like function
 export type Meaning = 'value' | 'type'
 export type Symbol = {
@@ -107,4 +119,4 @@ export type Module = {
     locals: Table
     statements: Statement[]
 }
-export type Type = { id: string, members?: Table }
+export type Type = { id: string, members?: Map<string, Type> }
