@@ -1,0 +1,87 @@
+{
+  "locals": {
+    "Point": [
+      {
+        "kind": "Interface",
+        "pos": 9
+      }
+    ],
+    "p": [
+      {
+        "kind": "Var",
+        "pos": 45
+      }
+    ]
+  },
+  "statements": [
+    {
+      "kind": "Interface",
+      "name": {
+        "kind": "Identifier",
+        "text": "Point"
+      },
+      "members": {
+        "0": {
+          "kind": "PropertySignature",
+          "name": {
+            "kind": "Identifier",
+            "text": "x"
+          },
+          "typename": {
+            "kind": "Identifier",
+            "text": "number"
+          }
+        },
+        "1": {
+          "kind": "PropertySignature",
+          "name": {
+            "kind": "Identifier",
+            "text": "y"
+          },
+          "typename": {
+            "kind": "Identifier",
+            "text": "number"
+          }
+        }
+      }
+    },
+    {
+      "kind": "Var",
+      "name": {
+        "kind": "Identifier",
+        "text": "p"
+      },
+      "typename": {
+        "kind": "Identifier",
+        "text": "Point"
+      },
+      "init": {
+        "kind": "ObjectLiteral",
+        "properties": {
+          "0": {
+            "kind": "PropertyAssignment",
+            "name": {
+              "kind": "Identifier",
+              "text": "x"
+            },
+            "initializer": {
+              "kind": "Literal",
+              "value": 1
+            }
+          },
+          "1": {
+            "kind": "PropertyAssignment",
+            "name": {
+              "kind": "Identifier",
+              "text": "y"
+            },
+            "initializer": {
+              "kind": "StringLiteral",
+              "value": "two"
+            }
+          }
+        }
+      }
+    }
+  ]
+}
