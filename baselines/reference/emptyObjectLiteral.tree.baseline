@@ -1,0 +1,23 @@
+{
+  "locals": {
+    "empty": [
+      {
+        "kind": "Var",
+        "pos": 3
+      }
+    ]
+  },
+  "statements": [
+    {
+      "kind": "Var",
+      "name": {
+        "kind": "Identifier",
+        "text": "empty"
+      },
+      "init": {
+        "kind": "ObjectLiteral",
+        "properties": {}
+      }
+    }
+  ]
+}

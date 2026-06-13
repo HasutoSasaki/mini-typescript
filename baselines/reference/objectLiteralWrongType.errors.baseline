@@ -1,0 +1,6 @@
+[
+  {
+    "pos": 58,
+    "message": "Cannot assign initialiser of type '{ x: number, y: string }' to variable with declared type '{ x: number, y: number }'."
+  }
+]

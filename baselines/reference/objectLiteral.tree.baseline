@@ -1,0 +1,46 @@
+{
+  "locals": {
+    "point": [
+      {
+        "kind": "Var",
+        "pos": 3
+      }
+    ]
+  },
+  "statements": [
+    {
+      "kind": "Var",
+      "name": {
+        "kind": "Identifier",
+        "text": "point"
+      },
+      "init": {
+        "kind": "ObjectLiteral",
+        "properties": {
+          "0": {
+            "kind": "PropertyAssignment",
+            "name": {
+              "kind": "Identifier",
+              "text": "x"
+            },
+            "initializer": {
+              "kind": "Literal",
+              "value": 1
+            }
+          },
+          "1": {
+            "kind": "PropertyAssignment",
+            "name": {
+              "kind": "Identifier",
+              "text": "y"
+            },
+            "initializer": {
+              "kind": "Literal",
+              "value": 2
+            }
+          }
+        }
+      }
+    }
+  ]
+}

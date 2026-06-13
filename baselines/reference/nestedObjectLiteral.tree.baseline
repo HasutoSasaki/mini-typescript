@@ -1,0 +1,47 @@
+{
+  "locals": {
+    "nested": [
+      {
+        "kind": "Var",
+        "pos": 3
+      }
+    ]
+  },
+  "statements": [
+    {
+      "kind": "Var",
+      "name": {
+        "kind": "Identifier",
+        "text": "nested"
+      },
+      "init": {
+        "kind": "ObjectLiteral",
+        "properties": {
+          "0": {
+            "kind": "PropertyAssignment",
+            "name": {
+              "kind": "Identifier",
+              "text": "outer"
+            },
+            "initializer": {
+              "kind": "ObjectLiteral",
+              "properties": {
+                "0": {
+                  "kind": "PropertyAssignment",
+                  "name": {
+                    "kind": "Identifier",
+                    "text": "inner"
+                  },
+                  "initializer": {
+                    "kind": "Literal",
+                    "value": 1
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

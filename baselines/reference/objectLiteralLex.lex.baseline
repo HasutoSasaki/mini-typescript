@@ -1,0 +1,33 @@
+[
+  [
+    "OpenBrace"
+  ],
+  [
+    "Identifier",
+    "x"
+  ],
+  [
+    "Colon"
+  ],
+  [
+    "Literal",
+    "1"
+  ],
+  [
+    "Comma"
+  ],
+  [
+    "Identifier",
+    "y"
+  ],
+  [
+    "Colon"
+  ],
+  [
+    "Literal",
+    "2"
+  ],
+  [
+    "CloseBrace"
+  ]
+]
