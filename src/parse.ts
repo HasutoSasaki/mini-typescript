@@ -1,4 +1,4 @@
-import { Lexer, Token, Node, Statement, Identifier, Expression, Module, PropertySignature } from './types'
+import { Lexer, Token, Node, Statement, Identifier, Expression, Module, PropertySignature, PropertyAssignment } from './types'
 import { error } from './error'
 export function parse(lexer: Lexer): Module {
     lexer.scan()
@@ -28,6 +28,14 @@ export function parse(lexer: Lexer): Module {
         else if (tryParseToken(Token.StringLiteral)) {
             return { kind: Node.StringLiteral, value: lexer.text().slice(1, -1), pos }
         }
+        else if (tryParseToken(Token.OpenBrace)) {
+            const properties: PropertyAssignment[] = []
+            while (!tryParseToken(Token.CloseBrace)) {
+                properties.push(parsePropertyAssignment())
+                tryParseToken(Token.Comma)
+            }
+            return { kind: Node.ObjectLiteral, properties, pos }
+        }
         error(pos, "Expected identifier or literal but got " + Token[lexer.token()])
         lexer.scan()
         return { kind: Node.Identifier, text: "(missing)", pos }
@@ -39,6 +47,13 @@ export function parse(lexer: Lexer): Module {
         }
         error(e.pos, "Expected identifier but got a literal")
         return { kind: Node.Identifier, text: "(missing)", pos: e.pos }
+    }
+    function parsePropertyAssignment(): PropertyAssignment {
+           const pos = lexer.pos()
+           const name = parseIdentifier()
+           parseExpected(Token.Colon)
+           const initializer = parseExpression()
+           return { kind: Node.PropertyAssignment, name, initializer, pos }
     }
     function parseProperty(): PropertySignature {
         const pos = lexer.pos()
